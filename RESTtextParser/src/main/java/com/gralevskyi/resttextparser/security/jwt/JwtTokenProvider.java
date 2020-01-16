@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.gralevskyi.resttextparser.domain.Role;
+import com.gralevskyi.resttextparser.domain.user.Role;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -93,9 +93,9 @@ public class JwtTokenProvider {
 		}
 	}
 
-	private List<String> getRoleNames(List<Role> userRoles) {
+	private List<String> getRoleNames(List<Role> roles) {
 		List<String> result = new ArrayList<>();
-		userRoles.forEach(role -> {
+		roles.forEach(role -> {
 			result.add(role.getName());
 		});
 		return result;

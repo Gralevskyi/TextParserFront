@@ -14,32 +14,33 @@ import org.springframework.stereotype.Service;
 public class TextParserInDecreasingOrderByValue implements TextParser {
 
 	@Override
-	public Map<String, Integer> parse(String s) {
-		Map<String, Integer> wordsMap = new HashMap<String, Integer>();
-		// "if" is used to avoid error when the method is called without pasting a
-		// string
-		if (s != null) {
-			String[] wordsArray = s.split("[^a-zA-Z]+");
-			for (String word : wordsArray) {
-				int indexOfWordInArray = Arrays.asList(wordsArray).indexOf(word);
-				wordsArray[indexOfWordInArray] = word.toLowerCase();
-			}
+	public Map<String, Integer> parse(String text) {
+		Map<String, Integer> parsedWords = new HashMap<String, Integer>();
+		String[] wordsArray = text.split("[^a-zA-Z]+");
 
-			for (String word : wordsArray) {
-				if (wordsMap.containsKey(word)) {
-					int i = wordsMap.get(word);
-					wordsMap.put(word, ++i);
-				} else {
-					wordsMap.put(word, 1);
-				}
-
-			}
-			wordsMap.remove(""); // removes spaces as key in map
+		// each word is modified to lower case to avoid duplicates
+		for (String word : wordsArray) {
+			int indexOfWordInArray = Arrays.asList(wordsArray).indexOf(word);
+			wordsArray[indexOfWordInArray] = word.toLowerCase();
 		}
-		return decreasingSortByValue(wordsMap);
+
+		// fill parsedWords map with words as a key and the number of their occurrences
+		// in the text as a value
+		for (String word : wordsArray) {
+			if (parsedWords.containsKey(word)) {
+				int numberOfTimesWordAppearInText = parsedWords.get(word);
+				parsedWords.put(word, ++numberOfTimesWordAppearInText);
+			} else {
+				int numberOfTimesWordAppearInText = 1;
+				parsedWords.put(word, numberOfTimesWordAppearInText);
+			}
+
+			parsedWords.remove(""); // removes empty key from parsed words map
+		}
+		return decreasingSortByValue(parsedWords);
 	}
 
-	// sort a map in decreasing order of value
+	// sort a map by value in decreasing order
 	Map<String, Integer> decreasingSortByValue(Map<String, Integer> unsorted) {
 		Map<String, Integer> sorted = unsorted.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 		return sorted;

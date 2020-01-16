@@ -1,0 +1,25 @@
+
+	
+<div class = "container">
+	
+	<h4 class="w-80">All your words units:</h4>
+	<br/>
+	<table class="table table-bordered w-80">
+		<thead>
+			<tr>
+				<th>Words unit name</th>
+				<th>Action</th>
+				<th> Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<ng-container *ngFor = "let wordsList of savedWordsList">
+				<tr>
+					<td>{{wordsList.name}}</td>
+					<td><button routerLink="/cabinet/{{wordsList.name}}"> Watch</button></td>
+					<td><button (click)="delete(wordsList.name)"> Delete</button></td>
+				</tr>
+			</ng-container>
+		</tbody>
+	</table>
+</div>

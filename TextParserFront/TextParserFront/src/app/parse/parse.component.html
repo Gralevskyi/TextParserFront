@@ -1,0 +1,53 @@
+<br/>
+<div class="container w-80">
+	<div class="form-group ">
+	
+		<div *ngIf="textSizeErrorMessage.length > 0" class="error-messages">
+			<p class="error-message">{{textSizeErrorMessage}}</p>
+		</div>
+		
+	  	<textarea #textbox [(ngModel)]="userText" required name="userText" 
+  					type = "text" class="form-control" rows="10" placeholder="Paste your text..."></textarea>
+  		<br/>
+		<button (click)="parse(textbox.value)" style="margin:auto;display:block">Parse into words</button>
+	</div>
+</div>
+		
+<br/>
+<div *ngIf="resultOfParsing">
+	<div class = "container">
+
+		<div *ngIf="savingErrorMessage.length > 0" class="error-messages">
+			<p class="error-message">{{savingErrorMessage}}</p>
+		</div>
+		
+		<div [hidden]="authenticated()" class="alert alert-danger">
+			<p>Login to save your word's list</p>
+		</div>
+		
+		<div [hidden]="!authenticated()">
+			<input type="text" #textName/>
+			&nbsp;
+			<button (click)="saveNewTextAndParsedWordsUnit(textName.value)">Save words unit</button>
+		</div>
+		
+		<br/>	
+		<table class="table table-bordered w-80" id="parsedWordsTable">
+			<thead>
+				<tr>
+					<th (click)="sortTable(0)" title="click to sort list by word">Word</th>
+					<th (click)="sortTable(1)" title="click to sort list by number">Number of times it appears in text</th>
+				</tr>
+			</thead>
+			<tbody>
+				<ng-container *ngFor = "let word of resultOfParsing | keyvalue">
+					<tr>
+						<td>{{word.key}}</td>
+						<td>{{word.value}}</td>
+					</tr>
+				</ng-container>
+			</tbody>
+		</table>
+		
+	</div>
+</div>

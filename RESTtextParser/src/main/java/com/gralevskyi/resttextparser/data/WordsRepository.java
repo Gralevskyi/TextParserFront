@@ -9,28 +9,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.gralevskyi.resttextparser.domain.SavedWordsList;
-import com.gralevskyi.resttextparser.domain.User;
+import com.gralevskyi.resttextparser.domain.TextAndParsedWordsUnit;
+import com.gralevskyi.resttextparser.domain.user.User;
 
-public interface WordsRepository extends CrudRepository<SavedWordsList, Long> {
+public interface WordsRepository extends CrudRepository<TextAndParsedWordsUnit, Long> {
 
-	List<SavedWordsList> findByUserId(Long userId);
+	List<TextAndParsedWordsUnit> findByUserUsername(String username);
 
-	List<SavedWordsList> findByUserUsername(String username);
-
-	SavedWordsList findByName(String name);
-
-	SavedWordsList findByUserUsernameAndName(String username, String name);
-
-	void deleteById(Long Id);
-
-	void deleteByName(String name);
+	TextAndParsedWordsUnit findByUserUsernameAndName(String username, String name);
 
 	@Transactional
-	void deleteByUserIdAndName(Long userId, String name);
+	void deleteByUserUsernameAndName(String username, String name);
 
 	@Transactional
 	@Modifying
-	@Query("update SavedWordsList t set t.name = :newName where t.name = :oldName and t.user = :user")
-	void updateWordsListNameByUser(@Param("newName") String newName, @Param("oldName") String oldName, @Param("user") User user);
+	@Query("update TextAndParsedWordsUnit t set t.name = :newName where t.name = :oldName and t.user = :user")
+	void updateWordsUnitNameByUser(@Param("newName") String newName, @Param("oldName") String oldName, @Param("user") User user);
 }

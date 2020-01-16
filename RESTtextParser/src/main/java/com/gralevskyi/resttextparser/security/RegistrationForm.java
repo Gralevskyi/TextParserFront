@@ -9,21 +9,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.gralevskyi.resttextparser.constraints.PasswordConfirmationCheck;
 import com.gralevskyi.resttextparser.constraints.UniqueUsername;
-import com.gralevskyi.resttextparser.domain.User;
+import com.gralevskyi.resttextparser.domain.user.User;
 
 @PasswordConfirmationCheck(first = "passwordConfirmation", second = "password")
 public class RegistrationForm {
-	@NotBlank(message = "Name is required")
+	@NotBlank(message = "Name is required.")
 	@UniqueUsername
 	private String username;
 
-	@NotNull(message = "Password must be at least 5 but not longer then 25 characters long")
-	@Size(min = 5, max = 25, message = "Password must be at least 5 but not longer then 25 characters long")
+	@NotNull(message = "Password must be at least 5 but not longer then 25 characters.")
+	@Size(min = 5, max = 25, message = "Password must be at least 5 but not longer then 25 characters.")
 	private String password;
 	private String passwordConfirmation;
 	private String fullname;
 
-	@Email(message = "Email should be valid")
+	@Email(message = "Email must be valid.")
 	private String email;
 	private String phone;
 

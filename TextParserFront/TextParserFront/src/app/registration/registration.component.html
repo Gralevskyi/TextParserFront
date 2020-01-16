@@ -1,0 +1,51 @@
+<div class="container w-80"> 
+	
+	<h1 >Registration</h1>
+	<p>Please fill in this form to create an account.</p>
+	<hr>
+		
+		<form (submit)="register()">
+			
+			<label>User name: </label>
+			<input type="text" [(ngModel)]="userRegistrationForm.username" name="username">
+			<div *ngIf="errorsFromServer.has('username')" class="error-messages">
+				{{errorsFromServer.get('username')}}
+			</div>
+			<br/>
+		
+			<label>Password: </label>
+			<input type="password" [(ngModel)]="userRegistrationForm.password" name="password">
+			<div *ngIf="errorsFromServer.has('password')" class="error-messages">
+				{{errorsFromServer.get('password')}}
+			</div>
+			<br/>
+				
+			<label>Confirm password: </label>
+			<input type="password" [(ngModel)]="userRegistrationForm.passwordConfirmation" name="passwordConfirmation">
+			<div *ngIf="errorsFromServer.has('passwordConfirmation')" class="error-messages">
+				{{errorsFromServer.get('passwordConfirmation')}}
+			</div>
+			<br/>
+		
+			<label>Full name: </label>
+			<input type="text" [(ngModel)]="userRegistrationForm.fullname" name="fullname"><br/>
+		
+			<label>email: </label>
+			<input type="text" [(ngModel)]="userRegistrationForm.email" name="email">
+			<div *ngIf="errorsFromServer.has('email')" class="error-messages">
+				{{errorsFromServer.get('email')}}
+			</div>
+			<br/>
+		
+			<label>Phone: </label>
+			<input type="text" [(ngModel)]="userRegistrationForm.phone" name="phone"><br/>
+		
+			<input type="submit" class="registerbtn" value="Register">
+			
+		</form>
+		
+		<div class="container signin">
+    		<p>Already have an account? <a href="/login">Sign in</a>.</p>
+  		</div>
+		
+</div>

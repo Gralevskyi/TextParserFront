@@ -20,7 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtTokenProvider jwtTokenProvider;
 
 	public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
-		super();
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
@@ -37,10 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().disable().csrf().disable()//
+		http.httpBasic().disable()//
+				.csrf().disable()//
 				.cors().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()//
-				.authorizeRequests().antMatchers("/h2-console/**", "/rest/login", "/api/registr", "/parse").permitAll().anyRequest().authenticated()//
-				.and().apply(new JwtConfigurer(jwtTokenProvider));
+				.authorizeRequests().antMatchers("/user/login", "/user/register", "/parse").permitAll().anyRequest().authenticated().and()//
+				.apply(new JwtConfigurer(jwtTokenProvider));
 		;
 	}
 

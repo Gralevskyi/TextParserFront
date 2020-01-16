@@ -15,7 +15,6 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
 	@Autowired
 	public UniqueUsernameValidator(JwtUserDetailsService userService) {
-		super();
 		this.userService = userService;
 	}
 

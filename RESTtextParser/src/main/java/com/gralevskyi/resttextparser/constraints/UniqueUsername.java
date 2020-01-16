@@ -1,6 +1,6 @@
 package com.gralevskyi.resttextparser.constraints;
 
-// check if a username is already exist in DataBase
+// check if a username is already existed in DataBase
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 @Target(FIELD)
 public @interface UniqueUsername {
-	String message() default "There is already a user with this username";
+	String message() default "There is already a user with this username. Please, choose another one.";
 
 	Class<?>[] groups() default {};
 

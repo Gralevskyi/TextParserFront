@@ -1,6 +1,5 @@
 package com.gralevskyi.resttextparser.constraints;
 
-/*class for PasswordConfirmingCheck annotation*/
 import java.lang.reflect.Method;
 
 import javax.validation.ConstraintValidator;
@@ -39,7 +38,6 @@ public class PasswordConfirmationValidator implements ConstraintValidator<Passwo
 		if (!valid) {
 			context.buildConstraintViolationWithTemplate(message).addPropertyNode(firstFieldName).addConstraintViolation().disableDefaultConstraintViolation();
 		}
-
 		return valid;
 	}
 }

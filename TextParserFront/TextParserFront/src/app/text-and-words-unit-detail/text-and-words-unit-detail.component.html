@@ -1,0 +1,61 @@
+<div class = "container">
+	<div class="w-80">
+	
+		<h4><small class="text-muted">Parsed words unit name: "</small>{{currentUnitName}}"</h4>
+		
+		<br/>
+		<button (click)="goBack()">go back</button>
+		&nbsp;
+		<button (click)="showChangeAllForm()">Change all</button>
+		&nbsp;
+		<button (click)="showChangeNameForm()">Change name</button>
+		
+		<div *ngIf="changeNameButtonIsClicked" name="changeNameForm">
+			<br/>
+			<div *ngIf="errorOnChange.length > 0" class="error-messages">
+					<p class="error-message">{{errorOnChange}}</p>
+			</div>
+			<label>New name: 
+				<input [(ngModel)] = "newUnitName"/>
+			</label>
+			&nbsp;
+			<button (click)="changeName()">Confirm name change</button>
+		</div>
+		
+		<div *ngIf="changeAllButtonIsClicked" name="changeAllForm">
+			<br/>
+			<p class="text-info">You can delete marked words from the words unit and change the unit's name</p>
+			<div *ngIf="errorOnChange.length > 0" class="error-messages">
+					<p class="error-message">{{errorOnChange}}</p>
+			</div>
+			<label>New name: 
+				<input [(ngModel)] = "newUnitName"/>
+			</label>
+			&nbsp;
+			<button (click)="changeAll()">Confirm changes</button>
+		</div>
+		
+		<div *ngIf ="currentTextAndParsedWordsUnit">
+			<br/>
+			<table class="table table-bordered" id="parsedWordsTable">
+				<thead>
+					<tr>
+						<th (click)="sortTable(0)" title="click to sort list by word">Word</th>
+						<th (click)="sortTable(1)" title="click to sort list by number">Number of times it appears in text</th>
+						<th *ngIf="changeAllButtonIsClicked">Check to delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ng-container *ngFor = "let word of currentTextAndParsedWordsUnit.getParsedWords() | keyvalue">
+						<tr>
+							<td name="word">{{word.key}}</td>
+							<td name="numberOfWordsInText">{{word.value}}</td>
+							<td *ngIf="changeAllButtonIsClicked"><input  #CBx type="checkbox"  (click)="addToDeleteList(CBx.checked, word.key)"/></td>
+						</tr>
+					</ng-container>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>

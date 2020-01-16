@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.gralevskyi.resttextparser.data.UserRepository;
-import com.gralevskyi.resttextparser.domain.User;
+import com.gralevskyi.resttextparser.domain.user.User;
 import com.gralevskyi.resttextparser.security.jwt.JwtUser;
 import com.gralevskyi.resttextparser.security.jwt.JwtUserFactory;
 
