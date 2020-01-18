@@ -73,7 +73,9 @@ export class ParseComponent implements OnInit {
         textAndParsedWordsUnit.parsedWords = objFromMap;
     }
   
-  authenticated() { return this.app.authenticated; }
+  authenticated() { 
+	  return this.app.authenticated; 
+  }
   
   sortTable(n) {
       var table, rows, switching, i, x, y, shouldSwitch, comparisonResult, dir, switchcount = 0;
