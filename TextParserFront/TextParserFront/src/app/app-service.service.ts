@@ -14,7 +14,7 @@ export class AppService {
   }
 
   authenticate(credentials, callback) {
-        this.http.post('http://localhost:8080/user/login', credentials)
+        this.http.post('http://resttextparser.us-east-2.elasticbeanstalk.com/user/login', credentials)
             .subscribe(
                     response => {
                             this.setSession(response);
