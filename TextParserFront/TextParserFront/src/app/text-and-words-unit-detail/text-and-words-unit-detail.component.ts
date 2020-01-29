@@ -36,7 +36,7 @@ export class TextAndWordsUnitDetailComponent implements OnInit {
   }
   
   getCurrentTextAndParsedWordsUnit(): void {
-      this.http.get('http://localhost:8080/cabinet/all/' + this.currentUnitName)
+      this.http.get('http://resttextparser.us-east-2.elasticbeanstalk.com/cabinet/all/' + this.currentUnitName)
                           .subscribe(response => this.currentTextAndParsedWordsUnit = new TextAndParsedWordsUnit(response));
   }
   
@@ -47,7 +47,7 @@ export class TextAndWordsUnitDetailComponent implements OnInit {
   }
   
   changeName():void {
-      this.http.patch('http://localhost:8080/cabinet/' + this.currentUnitName, this.newUnitName)
+      this.http.patch('http://resttextparser.us-east-2.elasticbeanstalk.com/cabinet/' + this.currentUnitName, this.newUnitName)
                       .subscribe(
                               success=>{
                                   this.router.navigateByUrl('/cabinet');
@@ -66,7 +66,7 @@ export class TextAndWordsUnitDetailComponent implements OnInit {
   
   changeAll():void {
       var newTextAndParsedWordsUnit = this.prepareNewTextAndParsedWordsUnitFromCurrentOne(this.currentTextAndParsedWordsUnit);
-      this.http.put('http://localhost:8080/cabinet/' + this.currentUnitName, newTextAndParsedWordsUnit)
+      this.http.put('http://resttextparser.us-east-2.elasticbeanstalk.com/cabinet/' + this.currentUnitName, newTextAndParsedWordsUnit)
                       .subscribe(
                               (success)=>{
                                   this.router.navigateByUrl('/cabinet');
