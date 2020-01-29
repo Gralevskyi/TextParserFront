@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
   }
   
   register() {
-      this.http.post('http://localhost:8080/user/register', JSON.stringify(this.userRegistrationForm)
+      this.http.post('http://resttextparser.us-east-2.elasticbeanstalk.com/user/register', JSON.stringify(this.userRegistrationForm)
                       ).subscribe(
                               response => {
                                   this.router.navigateByUrl('/login');
