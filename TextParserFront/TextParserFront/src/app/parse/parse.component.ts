@@ -29,7 +29,7 @@ export class ParseComponent implements OnInit {
   parse(userText: string) {
       console.log("Parse method");
       this.resultOfParsing = new Map();
-      this.http.post('http://localhost:8080/parse', JSON.stringify(userText))
+      this.http.post('http://resttextparser.us-east-2.elasticbeanstalk.com/parse', JSON.stringify(userText))
               .subscribe(
                       (response) => { 
                           Object.entries(response).forEach(
@@ -44,7 +44,7 @@ export class ParseComponent implements OnInit {
   
   saveNewTextAndParsedWordsUnit(textName: string): void {
       var newTextAndParsedWordsUnit = this.prepareNewTextAndParsedWordsUnit(textName);
-      this.http.post('http://localhost:8080/parse/saveParsedWords', newTextAndParsedWordsUnit)
+      this.http.post('http://resttextparser.us-east-2.elasticbeanstalk.com/parse/saveParsedWords', newTextAndParsedWordsUnit)
       .subscribe(
               (response) => {
                           this.router.navigateByUrl('/cabinet');
