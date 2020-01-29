@@ -19,7 +19,7 @@ export class CabinetComponent implements OnInit {
 
   ngOnInit() {
       this.savedWordsList = new Array<TextAndParsedWordsUnit>();
-      this.http.get('http://localhost:8080/cabinet/all')
+      this.http.get('http://resttextparser.us-east-2.elasticbeanstalk.com/cabinet/all')
           .subscribe((response: any[]) => {
                   response.map(
                           (item: any) => {
@@ -31,7 +31,7 @@ export class CabinetComponent implements OnInit {
   }
   
   delete(wordsListName: string): void {
-      this.http.delete('http://localhost:8080/cabinet/' + wordsListName)
+      this.http.delete('http://resttextparser.us-east-2.elasticbeanstalk.com/cabinet/' + wordsListName)
                           .pipe(finalize(
                                   () => {this.ngOnInit()}
                                                            )).subscribe();
