@@ -27,7 +27,6 @@ export class ParseComponent implements OnInit {
   }
   
   parse(userText: string) {
-      console.log("Parse method");
       this.resultOfParsing = new Map();
       this.http.post('http://resttextparser.us-east-2.elasticbeanstalk.com/parse', JSON.stringify(userText))
               .subscribe(
